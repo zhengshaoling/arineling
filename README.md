@@ -18,4 +18,9 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader)
+# 骨架搭建
+* 初始化一个项目 node init webpack arine, npm install, npm run dev 跑起来
+* 连接到git git init, 在github上new一个项目, 把本地项目添加上去 git remote add origin https://XXXXXXXXXXX.org
+* 安装各个工具包: element: vue add element, normalize.css, NProgress, moment.js, core-js
+* 新建几个文件夹filters, utils, layout, services, policies, views, router分别用来存放过滤器相关文件, 功能文件, 页面整体布局, api接口文件, 安全策略相关文件, 视图文件, 路由文件
