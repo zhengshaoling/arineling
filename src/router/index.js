@@ -1,25 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import NProgress from 'nprogress'
 
+const _import = require('./_import_'+ process.env.NODE_ENV)
 Vue.use(Router)
-Vue.use(NProgress)
 
-
+import Layout from '../layout'
+const arrRouter = [];
+export const constantRouterMap = [
+  {
+    path: '/dashboard',
+    // component: Layout,
+    component: _import('Index/index'),
+    hidden: true,
+    children: [{
+      path: 'index',
+      name: 'Dashboard',
+      component: _import('Index/index')
+    }]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: _import('Login/index')
+  }
+]
 export default new Router({
-  routes: [
-      {
-        path: '/',
-        name: 'HelloWorld',
-        component: HelloWorld
-      }
-  ]
+  mode: 'history',
+  scrollBehavior: () => ({
+    y: 0
+  }),
+  routes: constantRouterMap
 })
-// Router.beforeEach({to,from,next}) => {
-//   NProgress.start();
-//   next()
-// }
-// Router.afterEach({to,from}) => {
-//   NProgress.done()
-// }
+export const asyncRouterMap = arrRouter.concat();
