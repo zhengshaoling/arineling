@@ -5,6 +5,7 @@ const _import = require('./_import_'+ process.env.NODE_ENV)
 Vue.use(Router)
 
 import Layout from '../layout'
+const user = require('./user.js');
 const arrRouter = [];
 export const constantRouterMap = [
   {
@@ -24,11 +25,18 @@ export const constantRouterMap = [
     component: _import('Login/index')
   }
 ]
+constantRouterMap.push({
+  path: '/404',
+  component: _import('404'),
+  hidden: true
+});
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({
     y: 0
   }),
-  routes: constantRouterMap
+  routes: constantRouterMap.concat(user.router)
 })
+
 export const asyncRouterMap = arrRouter.concat();
+// arrRouter.concat(user.router);

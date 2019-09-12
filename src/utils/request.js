@@ -2,19 +2,27 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import NProgress from 'nprogress'
+
+NProgress.configure({
+  showSpinner: false
+})
 
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: 5000 // request timeout
+  timeout: 5000, // request timeout
+  showLoading: true
 });
 
-// request interceptor
+// 配置拦截器
 service.interceptors.request.use(
   config => {
-    // Do something before request is sent
+    if (config.headers.showLoading) {
+      NProgress.start()
+      delete config.headers.showLoading
+    }
     if (store.getters.token) {
-      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
       config.headers['Authorization'] = getToken();
     }
     return config;
@@ -25,16 +33,10 @@ service.interceptors.request.use(
   }
 );
 
-// response interceptor
+// 响应拦截器
 service.interceptors.response.use(
-  // response => response.data,
-  /**
-   * 下面的注释为通过在response里，自定义code来标示请求状态
-   * 当code返回如下情况则说明权限有问题，登出并返回到登录页
-   * 如想通过 xmlhttprequest 来状态码标识 逻辑可写在下面error中
-   * 以下代码均为样例，请结合自生需求加以修改，若不需要，则可删除
-   */
   response => {
+    NProgress.done()
     const res = response.data;
     // 导出
     const headers = response.headers;
@@ -56,10 +58,11 @@ service.interceptors.response.use(
     } else {
       // 后端会存在两种数据响应字段
       const resData = res.datas;
-      return resData || res.data;
+      return resData || res.data || res;
     }
   },
   error => {
+    NProgress.done()
     console.log('err' + error); // for debug
     Message({
       message: error.message,

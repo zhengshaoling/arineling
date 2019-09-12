@@ -5,18 +5,18 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 import { getToken } from '@/utils/auth' // getToken from cookie
 
-NProgress.configure({ showSpinner: true })// NProgress Configuration
+NProgress.configure({ showSpinner: false })// NProgress Configuration
 // 白名单
 const company_params = ''
 // /srm/admin
-const whiteList = [company_params+'/login', company_params+'/auth-redirect', company_params+'/dashboard/index']
+const whiteList = [company_params+'/login', company_params+'/user', company_params+'/dashboard/index']
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开始进度条
   if (getToken()) { // 确定是否有令牌
     /* has token*/
     if (to.path === company_params+'/login') {
-      next({ path: company_params+'/index' })
+      next({ path: company_params+'/dashboard/index' })
       NProgress.done() // 如果当前页面是仪表板，则不会在每个钩子之后触发，因此请手动处理它
     } else {
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {
-      next(company_params+'/dashboard/index') // 否则全部重定向到登录页
+      next(company_params+'/user') // 否则全部重定向到登录页
       NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
     }
   }
