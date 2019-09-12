@@ -1,23 +1,3 @@
-# arine
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
 # 骨架搭建
   * 初始化一个项目 node init webpack arine, npm install, npm run dev 跑起来
   * 设置npm淘宝镜像:npm config set registry https://registry.npm.taobao.org
@@ -28,7 +8,7 @@ npm run build --report
     3. NProgress: 用于页面跳转的交互效果, npm i nprogress -S
       * 在路由中引用,该项目中另建了个permission.js文件用于控制路由权限跳转已经跳转效果,在该文件下: 配置
       ``` bash
-      router.beforeEach((to, from, next) =>{
+      router.beforeEach((to, from, next) => {
         NProgress.start()
         next()
       })
@@ -134,6 +114,7 @@ npm run build --report
     }
     ```
     这样子在页面中就不再需要单独引入_var.scss这个文件了
+    # 但是但是,我引入失败了,那个_var.scss没有生效,还没找到解决方法呢!
 # tips 
   * git push -u origin master 时报出错误: fatal: Authentication failed for 'https://github.com/XXXXXXXXXXXXX.git'
     * 解决方法:
