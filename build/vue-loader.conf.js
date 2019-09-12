@@ -19,4 +19,11 @@ module.exports = {
     img: 'src',
     image: 'xlink:href'
   }
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       data: `@import "@/styles/var.scss";`
+  //     }
+  //   }
+  // }
 }

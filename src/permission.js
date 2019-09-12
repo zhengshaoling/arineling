@@ -1,6 +1,7 @@
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
+import { Notification } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 import { getToken } from '@/utils/auth' // getToken from cookie
@@ -13,6 +14,18 @@ const whiteList = [company_params+'/login', company_params+'/user', company_para
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开始进度条
+  if (to.matched.some(router => router.meta.auth)) {
+    Notification({
+      title: '提示',
+      message: '您没有权限请求当前页面',
+      type: 'warning',
+      duration: 1500
+    });
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  }
   if (getToken()) { // 确定是否有令牌
     /* has token*/
     if (to.path === company_params+'/login') {

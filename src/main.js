@@ -11,6 +11,7 @@ import './permission'
 import '@/assets/icon/iconfont.css'
 import './plugins/element.js'
 import 'normalize.css/normalize.css'
+
 Vue.component('vue-ueditor-wrap', VueUeditorWrap)
 
 Vue.config.productionTip = false

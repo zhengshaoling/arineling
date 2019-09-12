@@ -27,6 +27,7 @@ npm run build --report
     2. normalize: 初始化基础样式 npm i normalize -S,在main.js中引用:import normalize.css/normalize.css
     3. NProgress: 用于页面跳转的交互效果, npm i nprogress -S
       * 在路由中引用,该项目中另建了个permission.js文件用于控制路由权限跳转已经跳转效果,在该文件下: 配置
+      ``` bash
       router.beforeEach((to, from, next) =>{
         NProgress.start()
         next()
@@ -35,19 +36,26 @@ npm run build --report
         NProgress.done()
         next()
       })
+      ```
+
       关掉转圈圈式的加载:
+      ``` bash
       NProgress.configure({ showSpinner: false })
+      ```
       * 在request请求接口中引用,在配置中,
       
       配置下基础项:
+      ``` bash
       NProgress,configure({ showSpinner: false})
-      
+      ```
       在axios的配置中,添加showLoading项:
+      ``` bash
       const service = axios.create({
         showLoading: true
       })
-      
+      ```
       配置拦截器:
+      ```bash
       service.interceptors.request.use(
         config => {
           if(config.headers.showLoading) {
@@ -58,8 +66,9 @@ npm run build --report
           return config;
         }
       )
-      
+      ```
       配置响应拦截器:
+      ``` bash
       service.interceptors.response.use(
         response => {
           NProgress.done()
@@ -71,19 +80,60 @@ npm run build --report
         }
       )
       export default service
+      ```
 
       如果在某个具体的请求中,不需要有请求交互的效果,如下配置:
+      ``` bash
       export default({
         test() {
           return request.get('https://......', {
             headers: { showLoading: false }
           })
         }
-      })
-
+      })  
+      ``` 
     4. core-js在整个包中已经装好,无需再安装.
   * 新建几个文件夹filters, utils, layout, services, policies, views, router分别用来存放过滤器相关文件, 功能文件, 页面整体布局, api接口文件, 安全策略相关文件, 视图文件, 路由文件
   * 路由优化:
+  * vue.config.配置
+    * cssloader,在官网cli中可以查看详情,在安装sass-loader的时候安装的版本如果太高,兼容不了报错,就安装个低一点版本的即可,这里安装的7开头的版本.
+    将element-variables.scss 移入styles中,在styles中新建一个_var.scss文件,定义一些通用样式,在element-variables.scss中引用_var.scss文件,用于写通用类
+    ```bash
+    # icon font path, required
+    $--font-path: '~element-ui/lib/theme-chalk/fonts';
+    @import './var';
+    @import "~element-ui/packages/theme-chalk/src/index";
+    # 写通用类
+    .text-primary {
+      color: $--color-primary
+    }
+    ```
+    在_var.scss中写通用样式,如下: 
+    ```bash
+    $--color-primary: teal;
+    ```
+    这样就能替换原本element规定的样式,制定自己专属的样式,若在页面中项引用_var.scss所写的样式,需要引入_var.scss,如下
+    ```bash
+    <style lang='scss' scoped>
+      @import '@/styles/_var.scss';
+      p {
+        color: $--color-primary
+      }
+    </style>
+    ```
+    如果存在很多页面需要用到通用样式,这样子每个vue文件都要引一遍_var.scss很麻烦,所以可采取在根目录下新建一个vue.config.js文件,在里面定义好css-loader,r如下:
+    ```bash
+    module.exports = {
+      css: {
+        loaderOptions: {
+          sass: {
+            data: `@import "@/styles/_var.scss";`
+          }
+        }
+      }
+    }
+    ```
+    这样子在页面中就不再需要单独引入_var.scss这个文件了
 # tips 
   * git push -u origin master 时报出错误: fatal: Authentication failed for 'https://github.com/XXXXXXXXXXXXX.git'
     * 解决方法:

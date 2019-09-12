@@ -5,6 +5,7 @@ export const router = [
   {
     path: '/user',
     name: 'User',
-    component: _import('User/list')
+    component: _import('User/list'),
+    meta: { auth: true }
   }
 ];

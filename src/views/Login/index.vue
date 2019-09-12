@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>login</p>
-    <button @click="jump">跳转</button>
+    <el-button type="primary" @click="jump">跳转</el-button>
   </div>
 </template>
 <script>
@@ -14,6 +14,9 @@ export default{
   }
 }
 </script>
-<style scoped>
-
+<style lang='scss' scoped>
+  @import '@/styles/_var.scss';
+  p {
+    color: $--color-primary
+  }
 </style>
