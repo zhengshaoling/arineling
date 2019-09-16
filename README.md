@@ -75,6 +75,37 @@
     4. core-js在整个包中已经装好,无需再安装.
   * 新建几个文件夹filters, utils, layout, services, policies, views, router分别用来存放过滤器相关文件, 功能文件, 页面整体布局, api接口文件, 安全策略相关文件, 视图文件, 路由文件
   * 路由优化:
+    * 路由meta中实现权限控制
+    在user.js中添加meta项
+    ```bash
+    export const router = [
+      {
+        path: '/user',
+        name: 'User',
+        component: _import('User/list'),
+        meta: { auth: true }
+      }
+    ];
+    ```
+    在permission.js中,router.beforeEach中,配置如果没有权限则跳转到主页,并且显示提示
+    ```bash
+    router.beforeEach((to, from, next) => {
+      NProgress.start() // 开始进度条
+      if (to.matched.some(router => router.meta.auth)) {
+        Notification({
+          title: '提示',
+          message: '您没有权限请求当前页面',
+          type: 'warning',
+          duration: 1500
+        });
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+      }
+      .......
+    })
+    ```
   * vue.config.配置
     * cssloader,在官网cli中可以查看详情,在安装sass-loader的时候安装的版本如果太高,兼容不了报错,就安装个低一点版本的即可,这里安装的7开头的版本.
     将element-variables.scss 移入styles中,在styles中新建一个_var.scss文件,定义一些通用样式,在element-variables.scss中引用_var.scss文件,用于写通用类

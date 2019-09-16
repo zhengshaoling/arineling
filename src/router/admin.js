@@ -1,0 +1,35 @@
+const _import = require('./_import_' + process.env.NODE_ENV);
+import Layout from '../layout';
+
+export const router = [
+  {
+    path: '/odr',
+    component: Layout,
+    name: '采购管理',
+    children: [
+      {
+        path: 'order/list',
+        name: 'OrderList',
+        meta: {
+          title: '采购单管理'
+        },
+        component: _import('admin/odr/order/list')
+      }
+    ]
+  },
+  {
+    path: '/gds',
+    component: Layout,
+    name: '商品管理',
+    children: [
+      {
+        path: 'category/list',
+        name: 'CategoryList',
+        meta: {
+          title: '商品分类'
+        },
+        component: _import('admin/gds/category/list')
+      }
+    ]
+  }
+];

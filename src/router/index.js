@@ -5,26 +5,45 @@ const _import = require('./_import_'+ process.env.NODE_ENV)
 Vue.use(Router)
 
 import Layout from '../layout'
-const user = require('./user.js');
+
+// const user = require('./user.js');
+const admin = require('./admin.js')
+
 const arrRouter = [];
 export const constantRouterMap = [
   {
+    path: '/login',
+    name: 'Login',
+    component: _import('Login/index'),
+    hidden: true
+  },
+  {
+    path: '/',
+    name: 'Login',
+    component: _import('Login/index'),
+    hidden: true
+  },
+  {
     path: '/dashboard',
-    // component: Layout,
-    component: _import('Index/index'),
+    component: Layout,
+    name: 'Dashboard',
     hidden: true,
     children: [{
       path: 'index',
       name: 'Dashboard',
-      component: _import('Index/index')
-    }]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: _import('Login/index')
+      component: _import('Index/index'),
+      meta: { title: '首页' }
+    },
+    {
+      path: 'user',
+      name: 'User',
+      component: _import('User/list'),
+      meta: { auth: true }
+    }
+    ]
   }
 ]
+
 constantRouterMap.push({
   path: '/404',
   component: _import('404'),
@@ -35,8 +54,8 @@ export default new Router({
   scrollBehavior: () => ({
     y: 0
   }),
-  routes: constantRouterMap.concat(user.router)
+  routes: constantRouterMap
 })
 
-export const asyncRouterMap = arrRouter.concat();
+export const asyncRouterMap = arrRouter.concat(admin.router);
 // arrRouter.concat(user.router);

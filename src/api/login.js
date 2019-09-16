@@ -1,4 +1,6 @@
 import request from '@/utils/request';
+// import axios from 'axios'
+// this.axios = axios;
 
 const auth = '/auth';
 const srm = '/srm';

@@ -12,7 +12,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'https://sit.ufa.hk/',
-        secure: true,
+        secure: false,
         changeOrigin: true
       }
     },

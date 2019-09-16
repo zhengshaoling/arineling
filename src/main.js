@@ -6,11 +6,17 @@ import router from './router'
 import store from './store'
 import filters from './filters'
 import VueUeditorWrap from 'vue-ueditor-wrap'
-import '@/assets/css/common.css'
+import i18n from './lang'
+
+import './mock'
+import './errorLog'
 import './permission'
-import '@/assets/icon/iconfont.css'
 import './plugins/element.js'
 import 'normalize.css/normalize.css'
+
+import '@/styles/index.scss'
+import '@/assets/css/common.css'
+import '@/assets/icon/iconfont.css'
 
 Vue.component('vue-ueditor-wrap', VueUeditorWrap)
 
@@ -23,5 +29,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

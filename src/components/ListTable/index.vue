@@ -51,18 +51,14 @@ export default {
       if (typeof this.api !== 'function') {
         throw new Error('api应该传入一个方法')
       }
-      this.api(params)
-        .then(res => {
-          // this.list = res.list
-          this.list = res.data.items
-          this.page = res.page
-        })
-        .catch(() => {
-          throw new Error('处理异常')
-        })
-        .then(() => {
-          this.queryLoading = false
-        })
+      this.api(params).then(res => {
+        // this.list = res.list
+        this.list = res.data.items
+        this.page = res.page
+      }).catch(() => {
+        throw new Error('处理异常')
+      })
+      this.queryLoading = false;
     },
     pages() {
       this.getList()

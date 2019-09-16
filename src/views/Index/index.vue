@@ -2,17 +2,20 @@
   <div>
     <div class="searchBox">
       <form-search :form-data="formData" @onSubmit="submit" @reset="reset"/>
+      <list-table :api="getList" :params="query" @selection-change="handleSelectionChange">
+        <el-table-column fixed="left" type="selection" class="selection" prop="id" width="45" align="center"/>
+      </list-table>
     </div>
-
-    <div>首页</div>
   </div>
 </template>
 <script>
 import Vue from 'vue'
+import { corpTypeEnum, regFromEnum, statusEnum, regTypeEnum } from './components/selectList';
 import formSearch from '@/components/FormSearch'
+import listTable from '@/components/ListTable'
 export default{
   name: 'Index',
-  components: { formSearch },
+  components: { formSearch, listTable },
   data() {
     return {
       imgUrl: '@/assets/test.png',
@@ -25,23 +28,84 @@ export default{
         { id: 5, name: 'name1' }
       ],
       formData: {
-        advanceList: [
+        popoverList: [
+          {
+            key: 'select',
+            type: 'select',
+            name: 'status',
+            label: '审核状态',
+            labelKey: 'label',
+            valueKey: 'value',
+            list: statusEnum
+          },
+          {
+            key: 'select',
+            type: 'select',
+            name: 'type',
+            label: '企业类型',
+            labelKey: 'label',
+            valueKey: 'value',
+            list: corpTypeEnum
+          },
           {
             key: 'text',
             type: 'input',
-            name: 'settleNo',
-            label: '流水号'
-          }, {
+            name: 'contactName',
+            label: '姓名'
+          },
+          {
             key: 'text',
             type: 'input',
-            name: 'purName',
-            label: '采购商名称'
-          }, {
-            key: 'daterange',
+            name: 'code',
+            label: '企业编号'
+          },
+          {
+            key: 'text',
+            type: 'input',
+            name: 'inviter',
+            label: '邀请人'
+          },
+          {
+            key: 'select',
+            type: 'select',
+            name: 'regType',
+            label: '身份类型',
+            labelKey: 'label',
+            valueKey: 'value',
+            list: regTypeEnum
+          },
+          {
+            key: 'select',
+            type: 'select',
+            name: 'regFrom',
+            label: '注册来源',
+            labelKey: 'label',
+            valueKey: 'value',
+            list: regFromEnum
+          },
+          {
+            key: 'select',
+            type: 'select',
+            name: 'certFrom',
+            label: '认证来源',
+            labelKey: 'label',
+            valueKey: 'value',
+            list: regFromEnum
+          },
+          {
+            key: 'date',
+            type: 'date',
+            startName: 'auditDateStart',
+            endName: 'auditDateEnd',
+            label: '审核时间',
+            format: 'yyyy/MM/dd'
+          },
+          {
+            key: 'date',
             type: 'date',
             startName: 'createDateStart',
             endName: 'createDateEnd',
-            label: '生成时间',
+            label: '创建时间',
             format: 'yyyy/MM/dd'
           }
         ],
@@ -49,20 +113,19 @@ export default{
           {
             key: 'text',
             type: 'input',
-            name: 'no',
-            label: '账单号'
+            name: 'name',
+            label: '企业名称'
           }, {
-            key: 'select',
-            type: 'select',
-            name: 'payType',
-            label: '结算方式',
-            labelKey: 'value',
-            valueKey: 'key',
-            list: []
+            key: 'text',
+            type: 'input',
+            name: 'contactPhone',
+            label: '联系电话'
           }
         ]
       },
-      params: {}
+      params: {},
+      query: {},
+      selection: []
     }
   },
   created() {
@@ -76,11 +139,14 @@ export default{
 
     },
     submit(data) {
-      this.params = { ...this.params, ...data }
+      this.query = { ...data }
       this.getList()
     },
     reset() {
 
+    },
+    handleSelectionChange(selection) {
+      this.selection = selection;
     }
   }
 }
