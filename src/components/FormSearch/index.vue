@@ -2,12 +2,12 @@
   <div>
     <div v-if="formData.advanceList && formData.advanceList.length > 0" class="advanceSearch">
       <el-popover ref="advanced" placement="bottom" width="500" tirgger="hover">
-        <el-form ref="advanceSearch" label-position="right" label-width="100px" :model="params">
+        <el-form ref="advanceSearch" :model="params" label-position="right" label-width="100px">
           <el-form-item v-for="item in formData.advanceList" :key="item.label" :label="item.label">
             <!--文本输入框-->
-            <el-input v-if="item.key==='text'" v-model.trim="params[item.name]" type="item.type" :placeholder="item.label" clearable @input="debounceGetList" />
+            <el-input v-if="item.key==='text'" v-model.trim="params[item.name]" :placeholder="item.label" type="item.type" clearable @input="debounceGetList" />
             <!--单选框-->
-            <el-select v-if="item.key==='select'" v-model="params[item.name]" placeholder="item.label" @change="debounceGetList">
+            <el-select v-if="item.key==='select'" v-model="params[item.name]" :placeholder="item.label" @change="debounceGetList">
               <el-option v-if="!item.closeAll" :value="typeof(params[item.name])=='string' ? '' : null" label="全部" />
               <el-option v-for="(enumValue, enumKey) in item.list" :key="enumKey" :label="enumValue[item.labelKey]" :value="enumValue[item.valueKey]" />
             </el-select>
@@ -40,12 +40,12 @@
       </el-popover>
     </div>
     <div class="commonSearch">
-      <el-form ref="commonSearch" label-position="right" label-width="100px" :model="params" inline>
+      <el-form ref="commonSearch" :model="params" label-position="right" label-width="100px" inline>
         <el-form-item v-for="item in formData.commonList" :key="item.label" :label="item.label">
           <!--文本输入框-->
-          <el-input v-if="item.key==='text'" v-model.trim="params[item.name]" type="item.type" :placeholder="item.label" clearable />
+          <el-input v-if="item.key==='text'" v-model.trim="params[item.name]" :placeholder="item.label" type="item.type" clearable />
           <!--单选框-->
-          <el-select v-if="item.key==='select'" v-model="params[item.name]" placeholder="item.label">
+          <el-select v-if="item.key==='select'" v-model="params[item.name]" :placeholder="item.label">
             <el-option v-if="!item.closeAll" :value="typeof(params[item.name])=='string' ? '' : null" label="全部" />
             <el-option v-for="(enumValue, enumKey) in item.list" :key="enumKey" :label="enumValue[item.labelKey]" :value="enumValue[item.valueKey]" />
           </el-select>
@@ -74,7 +74,7 @@
           <!--多选框-->
         </el-form-item>
         <el-form-item>
-          <el-button v-if="formData.advanceList && formData.advanceList.length > 0" v-popover:advanced type="primary">高级搜索</el-button>
+          <el-button v-popover:advanced v-if="formData.advanceList && formData.advanceList.length > 0" type="primary">高级搜索</el-button>
           <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
           <el-button type="warning" icon="el-icon-refresh" @click="reset">重置</el-button>
         </el-form-item>

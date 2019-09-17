@@ -43,6 +43,14 @@ export const constantRouterMap = [
     ]
   }
 ]
+const addCtx = item => {
+  item.path ='/arine' + item.path;
+  if (item.redirect !== undefined && item.redirect !== 'noredirect') {
+    item.redirect ='/arine' + item.redirect
+  }
+  return item;
+};
+constantRouterMap.map(addCtx)
 
 constantRouterMap.push({
   path: '/404',
@@ -58,4 +66,4 @@ export default new Router({
 })
 
 export const asyncRouterMap = arrRouter.concat(admin.router);
-// arrRouter.concat(user.router);
+asyncRouterMap.map(addCtx)

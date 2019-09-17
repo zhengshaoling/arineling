@@ -38,29 +38,31 @@ export default {
     return {
       queryLoading: false,
       list: [],
-      page: {}
+      page: defaultPage()
     }
   },
   mounted() {
     this.getList()
   },
   methods: {
-    getList() {
-      this.queryLoading = true
-      const params = { ...this.params, ...this.page }
-      if (typeof this.api !== 'function') {
-        throw new Error('api应该传入一个方法')
-      }
-      this.api(params).then(res => {
-        // this.list = res.list
-        this.list = res.data.items
-        this.page = res.page
-      }).catch(() => {
+    async getList() {
+      try {
+        this.queryLoading = true
+        const params = { ...this.params, ...this.page }
+        if (typeof this.api !== 'function') {
+          throw new Error('api应该传入一个方法')
+        }
+        const res = await this.api(params);
+        console.log(res, 'res')
+        this.list = res.list;
+        this.page = res.page;
+      } catch (e) {
         throw new Error('处理异常')
-      })
+      }
       this.queryLoading = false;
     },
-    pages() {
+    pages(newPage) {
+      this.page = newPage;
       this.getList()
     },
     _resetPage() {
