@@ -73,7 +73,7 @@
 
 <script>
 import _ from 'underscore'
-import pagination from './Pagination'
+import pagination from '@/components/Pagination'
 import { defaultPage } from '@/utils/default'
 
 export default {
@@ -87,10 +87,18 @@ export default {
       }
     },
     page: {
-      type: String,
+      type: Object,
       default() {
         return defaultPage()
       }
+    },
+    id: {
+      type: String,
+      default: 'id'
+    },
+    name: {
+      type: String,
+      default: 'name'
     }
   },
   data() {

@@ -12,7 +12,7 @@ const company_params = '/arine'
 // const company_params = ''
 
 // /srm/admin
-const whiteList = [company_params+'/login', company_params+'/auth-redirect']
+const whiteList = [company_params+'/login', company_params+'/auth-redirect', company_params+'/dashboard/user']
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开始进度条

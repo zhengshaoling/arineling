@@ -38,7 +38,7 @@ export const constantRouterMap = [
       path: 'user',
       name: 'User',
       component: _import('User/list'),
-      meta: { auth: true }
+      meta: { auth: false }
     }
     ]
   }
