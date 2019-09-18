@@ -1,8 +1,15 @@
 <template>
   <div class="app-container">
-
     <div class="transfer_box">
       <transfer :list="list" :id="idKey" :name="nameKey" @getList="search"/>
+    </div>
+    <div class="float">
+      <div class="left">
+        <line-marker :width="width" :height="width" />
+      </div>
+      <div class="right">
+        <mix-chart />
+      </div>
     </div>
   </div>
 
@@ -10,9 +17,13 @@
 <script>
 import user from '@/api/user'
 import transfer from '@/components/Transfer'
+import lineCharts from './components/lineCharts'
+import lineMarker from '@/components/Charts/lineMarker'
+import mixChart from '@/components/Charts/mixChart'
+import keyboard from '@/components/Charts/keyboard'
 export default {
   name: 'User',
-  components: { transfer },
+  components: { transfer, lineCharts, lineMarker, mixChart, keyboard },
   data() {
     return {
       loading: false,
@@ -31,7 +42,8 @@ export default {
         { id: 61, name: 'list61' }
       ],
       idKey: 'id',
-      nameKey: 'name'
+      nameKey: 'name',
+      width: '500px'
     }
   },
   methods: {
@@ -52,7 +64,16 @@ export default {
   margin: 5px;
   .transfer_box {
     width: 90%;
+    text-align: center;
     height: auto;
+  }
+  .float {
+    .left {
+      width: 49%;
+    }
+    .right {
+      width: 49%;
+    }
   }
 }
 
