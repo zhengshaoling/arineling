@@ -1,4 +1,5 @@
-import request from '../utils/request'
+import request from '@/utils/request';
+const odr = '/odr/protected';
 
 export default({
   test() {
@@ -7,3 +8,11 @@ export default({
     })
   }
 })
+
+export function lineChartData(data) {
+  return request({
+    url: odr + '/order/lineChartData',
+    method: 'post',
+    data
+  });
+}

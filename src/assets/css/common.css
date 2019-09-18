@@ -108,3 +108,22 @@ input[readonly] {
   padding-bottom: 10px !important;
 }
 /** 折叠面板样式更改 end **/
+
+/* 左右浮动 */
+.float {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  display: inline-block;
+  text-align: center;
+}
+.float::after,.float::before {
+  float: none;
+  clear: both;
+}
+.float .left {
+  float: left;
+}
+.float .right {
+  float: right;
+}

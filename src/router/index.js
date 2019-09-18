@@ -4,7 +4,7 @@ import Router from 'vue-router'
 const _import = require('./_import_'+ process.env.NODE_ENV)
 Vue.use(Router)
 
-import Layout from '../layout'
+import Layout from '@/layout'
 
 // const user = require('./user.js');
 const admin = require('./admin.js')
@@ -38,7 +38,10 @@ export const constantRouterMap = [
       path: 'user',
       name: 'User',
       component: _import('User/list'),
-      meta: { auth: false }
+      meta: {
+        auth: false,
+        title: '穿梭框'
+      }
     }
     ]
   }
