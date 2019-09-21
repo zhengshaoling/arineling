@@ -7,6 +7,7 @@ import store from './store'
 import filters from './filters'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 import i18n from './lang'
+import _ from 'lodash'
 
 import './mock'
 import './errorLog'
@@ -21,6 +22,8 @@ import '@/assets/icon/iconfont.css'
 Vue.component('vue-ueditor-wrap', VueUeditorWrap)
 
 Vue.config.productionTip = false
+
+Vue.prototype._ = _
 
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key])) // 全局注册过滤器
 

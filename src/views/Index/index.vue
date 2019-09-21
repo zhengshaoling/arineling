@@ -46,7 +46,6 @@
       </el-table-column>
     </list-table>
   </div>
-  </div>
 </template>
 <script>
 import { corpTypeEnum, regFromEnum, statusEnum, regTypeEnum } from './components/selectList';
@@ -55,6 +54,8 @@ import listTable from '@/components/ListTable'
 import TableColumnPicker from '@/components/TableColumnPicker'
 import { getTableList } from '@/api/dashboard'
 import { fileFlowExcel } from '@/utils/common'
+import { parseTime } from '@/utils'
+
 export default{
   name: 'Index',
   components: { formSearch, listTable, TableColumnPicker },
@@ -163,6 +164,12 @@ export default{
   },
   watch: {
     params() {
+      // 深拷貝使用示例
+      // console.log(this.params, '深拷貝之前的this.params');
+      // var clone = this._.cloneDeep(this.params);
+      // clone.no = 343253432421324;
+      // console.log(clone, 'clone');
+      // console.log(this.params, '深拷貝之後的this.params')
       this.reload();
     }
   },
