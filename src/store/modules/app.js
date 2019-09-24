@@ -39,6 +39,7 @@ const app = {
   },
   actions: {
     toggleSideBar({ commit }) {
+      console.log('toggle_sideBar,commit')
       commit('TOGGLE_SIDEBAR')
     },
     closeSideBar({ commit }, { withoutAnimation }) {

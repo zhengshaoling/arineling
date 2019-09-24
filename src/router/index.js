@@ -47,9 +47,9 @@ export const constantRouterMap = [
   }
 ]
 const addCtx = item => {
-  item.path ='/arine' + item.path;
+  item.path ='/srm/admin' + item.path;
   if (item.redirect !== undefined && item.redirect !== 'noredirect') {
-    item.redirect ='/arine' + item.redirect
+    item.redirect ='/srm/admin' + item.redirect
   }
   return item;
 };

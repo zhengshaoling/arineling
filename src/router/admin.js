@@ -1,5 +1,5 @@
 const _import = require('./_import_' + process.env.NODE_ENV);
-import Layout from '../layout';
+import Layout from '@/layout';
 
 export const router = [
   {
@@ -29,6 +29,22 @@ export const router = [
           title: '商品分类'
         },
         component: _import('admin/gds/category/list')
+      }
+    ]
+  },
+  {
+    path: '/srm',
+    component: Layout,
+    name: 'SRM系统设置',
+    redirect: '/srm/index',
+    children: [
+      {
+        path: 'index',
+        name: 'SRMList',
+        meta: {
+          title: 'SRM系统列表'
+        },
+        component: _import('srm/index')
       }
     ]
   }

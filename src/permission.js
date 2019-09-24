@@ -8,7 +8,7 @@ import { getToken } from '@/utils/auth' // getToken from cookie
 
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 // 白名单
-const company_params = '/arine'
+const company_params = '/srm/admin'
 // const company_params = ''
 
 // /srm/admin

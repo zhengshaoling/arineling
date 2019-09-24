@@ -15,7 +15,7 @@ const user = {
     setting: {
       articlePlatform: []
     },
-    context: '/srm/admin'
+    context: '/arine'
   },
 
   mutations: {
@@ -45,6 +45,10 @@ const user = {
     },
     SET_USERINFO: (state, userInfo) => {
       state.userInfo = userInfo
+    },
+    SET_COMPANY_PARAMS: (state, company_params) => {
+      state.company_param = '/arine/' + company_params
+      state.context = company_params
     }
 
   },

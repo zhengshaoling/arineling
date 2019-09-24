@@ -1,9 +1,9 @@
 <template>
   <div class="navbar">
     <hamburger
-      :toggle-click="toggleSideBar"
       :is-active="sidebar.opened"
       class="hamburger-container"
+      @toggleClick="toggleSideBar"
     />
 
     <breadcrumb class="breadcrumb-container"/>

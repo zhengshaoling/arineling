@@ -13,3 +13,16 @@ export function setToken(token) {
 export function removeToken() {
   return Cookies.remove(TokenKey)
 }
+
+// 获取Cookies值
+export function getPerm(key) {
+  return Cookies.get(key)
+}
+
+export function setPerm(key, val) {
+  return Cookies.set(key, val)
+}
+
+export function removePerm(key) {
+  return Cookies.remove(key)
+}
