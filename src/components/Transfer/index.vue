@@ -111,7 +111,8 @@ export default {
       params: {
         name: ''
       },
-      rightPage: defaultPage()
+      rightPage: defaultPage(),
+      layout: "total, sizes, prev, pager, next, jumper"
     }
   },
   computed: {

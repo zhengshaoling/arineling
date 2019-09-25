@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="img-upload">
-      <img v-if="imgUrl" class="upload-img" :src="imgUrl" alt="" style="height:180px;">
+      <img v-if="imgUrl" :src="imgUrl" class="upload-img" alt="" style="height:180px;">
       <div v-if="imgUrl" class="icon-box">
         <span class="upload-img-handle-preview" @click="handlePicturePreview">
           <i class="el-icon-zoom-in" />
@@ -66,7 +66,7 @@ export default {
       console.log(resData, 'resData')
       this.imageCropper = false
       this.keyId += 1
-      this.$emit('handle-success', resData.relativeFilePath)
+      this.$emit('handleSuccess', resData.relativeFilePath)
     }
   }
 }

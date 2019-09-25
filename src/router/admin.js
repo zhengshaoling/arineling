@@ -47,5 +47,28 @@ export const router = [
         component: _import('srm/index')
       }
     ]
+  },
+  {
+    path: '/usr',
+    component: Layout,
+    // name: '',
+    children: [
+      {
+        path: 'corporate/list',
+        name: 'UsrCorporateList',
+        meta: {
+          title: '企业信息管理'
+        },
+        component: _import('User/list')
+      },
+      {
+        path: 'user/list',
+        name: 'UserList',
+        meta: {
+          title: '企业用户管理'
+        },
+        component: _import('Index/index')
+      }
+    ]
   }
 ];
