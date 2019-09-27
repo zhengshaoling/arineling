@@ -12,6 +12,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'https://sit.ufa.hk/',
+        // target: ' https://www.easy-mock.com/mock/5d8c1dc85dc0684169a19cee/arine',
         secure: false,
         changeOrigin: true
       }

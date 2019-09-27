@@ -33,15 +33,6 @@ export const constantRouterMap = [
       name: 'Dashboard',
       component: _import('Index/index'),
       meta: { title: '首页' }
-    },
-    {
-      path: 'user',
-      name: 'User',
-      component: _import('User/list'),
-      meta: {
-        auth: false,
-        title: '穿梭框'
-      }
     }
     ]
   }

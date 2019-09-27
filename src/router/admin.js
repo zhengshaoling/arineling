@@ -35,7 +35,7 @@ export const router = [
   {
     path: '/srm',
     component: Layout,
-    name: 'SRM系统设置',
+    name: '组件',
     redirect: '/srm/index',
     children: [
       {

@@ -32,11 +32,11 @@
             <el-col :span="10">
               <el-form-item label="时间范围">
                 <el-col :span="11">
-                  <el-date-picker v-model="form.startDate" type="date" placeholder="开始日期" format="yyyy-MM-dd" style="width: 100%;" />
+                  <el-date-picker v-model="form.startDate" type="date" placeholder="开始日期" format="yyyy-MM-dd" value-format="yyyy-MM-dd" style="width: 100%;" />
                 </el-col>
                 <el-col :span="2" class="line">-</el-col>
                 <el-col :span="11">
-                  <el-date-picker v-model="form.endDate" type="date" placeholder="结束日期" format="yyyy-MM-dd" style="width: 100%;" />
+                  <el-date-picker v-model="form.endDate" type="date" placeholder="结束日期" format="yyyy-MM-dd" value-format="yyyy-MM-dd" style="width: 100%;" />
                 </el-col>
               </el-form-item>
             </el-col>
@@ -142,6 +142,12 @@ export default{
     },
     removeLoginBgSuccess() {
       this.loginBg = '';
+    },
+    cancel() {
+
+    },
+    submit() {
+
     }
   }
 }

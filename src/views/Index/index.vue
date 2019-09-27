@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <back-to-top/>
     <div class="searchBox">
       <form-search :form-data="formData" @onSubmit="submit" @reset="reset"/>
     </div>
@@ -45,10 +46,12 @@
         </template>
       </el-table-column>
     </list-table>
+
   </div>
 </template>
 <script>
 import { corpTypeEnum, regFromEnum, statusEnum, regTypeEnum } from './components/selectList';
+import backToTop from "@/components/BackToTop";
 import formSearch from '@/components/FormSearch'
 import listTable from '@/components/ListTable'
 import TableColumnPicker from '@/components/TableColumnPicker'
@@ -58,7 +61,7 @@ import { parseTime } from '@/utils'
 
 export default{
   name: 'Index',
-  components: { formSearch, listTable, TableColumnPicker },
+  components: { formSearch, listTable, TableColumnPicker, backToTop },
   data() {
     return {
       imgUrl: '@/assets/test.png',
