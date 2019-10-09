@@ -140,6 +140,7 @@ export default {
 }
 </script>
 <style rel="stylesheet/scss" lang="scss">
+
   $bg:#2d3a4b;
   $light_gray:#eee;
 
@@ -175,7 +176,7 @@ export default {
 <style rel='stylesheet/scss' lang='scss' scoped>
   @import '@/styles/_var.scss';
   p {
-    color: $--color-primary
+    color: $--color-warning;
   }
   $bg:#2d3a4b;
   $dark_gray:#889aa4;

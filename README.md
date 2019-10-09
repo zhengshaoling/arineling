@@ -145,7 +145,23 @@
     }
     ```
     这样子在页面中就不再需要单独引入_var.scss这个文件了
-    # 但是但是,我引入失败了,那个_var.scss没有生效,还没找到解决方法呢!
+    # 但是但是,我引入失败了,那个_var.scss没有生效,还没找到解决方法呢!后面我查了下,我的vue-cli版本不是 3,是2来的,上面的方法是针对3的,于是我查了下2的做法,但,,,,还是不行哇,用的以下方法,也记录下吧
+    在webpack.base.conf.js中的modules->rules下添加以下代码串:
+    ```bash
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              data: `@import "@/styles/_var.scss";`
+            }
+          }
+        ]
+      },
+    ```
 # tips 
   * git push -u origin master 时报出错误: fatal: Authentication failed for 'https://github.com/XXXXXXXXXXXXX.git'
     * 解决方法:
@@ -165,8 +181,12 @@
 * 组件,
 * 组件嵌套
 * 属性与事件
+* react中class改为className
 
 
+# 心理学书籍
+  * 幸福是陷阱 -- 路斯.哈里斯博士
+  
 ```bash
 
   

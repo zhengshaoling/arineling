@@ -66,7 +66,6 @@ export function getAuthorizedItem() {
   return request({
     url: auth + '/protected/structure/getAuthorizedItem'
     // url: '/getAuthorizedItem'
-
   })
 }
 
@@ -77,7 +76,6 @@ export function getAuthorizedBtnAuthCode() {
   return request({
     url: auth + '/protected/structure/getAuthorizedBtnAuthCode'
     // url: '/getAuthorizedBtnAuthCode'
-
   })
 }
 

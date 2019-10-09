@@ -75,8 +75,9 @@
         </el-form-item>
         <el-form-item>
           <el-button v-popover:advanced v-if="formData.advanceList && formData.advanceList.length > 0" type="primary">高级搜索</el-button>
-          <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
+          <el-button type="success" icon="el-icon-search" @click="getList">查询</el-button>
           <el-button type="warning" icon="el-icon-refresh" @click="reset">重置</el-button>
+          <el-button type="danger">测试</el-button>
         </el-form-item>
       </el-form>
     </div>
