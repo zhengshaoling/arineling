@@ -12,7 +12,7 @@ const company_params = '/srm/admin'
 // const company_params = ''
 
 // /srm/admin
-const whiteList = [company_params+'/login', company_params+'/auth-redirect', company_params+'/dashboard/user']
+const whiteList = [company_params+'/login', company_params+'/auth-redirect', company_params+'/dashboard/user', company_params+'/dashboard/index']
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开始进度条
@@ -58,7 +58,8 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {
-      next(company_params+'/login') // 否则全部重定向到登录页
+      // next(company_params+'/login') // 否则全部重定向到登录页
+      next(company_params+'/dashboard/index') // 否则全部重定向到登录页
       NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
     }
   }
